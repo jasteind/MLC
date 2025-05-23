@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>Videresender...</title>
+  <script>
+    // 🔧 Sett inn dine egne URL-er her
+    const broadcastUrl = "https://app.xenioo.com/api/broadcast/trigger?id=DIN_ID&key=DIN_NØKKEL";
+    const redirectUrl = "https://play.google.com/store/apps/details?id=com.example.app";
+
+    async function triggerBroadcastAndRedirect() {
+      try {
+        // Kaller Xenioo broadcast-URL
+        await fetch(broadcastUrl);
+
+        // Vent 1 sekund før redirect (kan justeres)
+        setTimeout(() => {
+          window.location.href = redirectUrl;
+        }, 1000);
+      } catch (error) {
+        console.error('Feil ved broadcast:', error);
+        // Fortsett til redirect selv om noe feiler
+        window.location.href = redirectUrl;
+      }
+    }
+
+    window.onload = triggerBroadcastAndRedirect;
+  </script>
+</head>
+<body>
+  <p>Vennligst vent mens vi videresender deg...</p>
+</body>
+</html>
